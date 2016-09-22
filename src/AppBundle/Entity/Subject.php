@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,7 +21,21 @@ class Subject
      */
     private $id;
 
-    /**
+	/**
+	 * @ORM\Column(type="string")
+	 *
+	 * @var string
+	 */
+	private $vote;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Reply", mappedBy="subject")
+	 *
+	 * @var reply
+	 */
+	private $replies;
+
+	/**
      * @ORM\Column(type="string")
      *
      * @var string
@@ -60,6 +75,8 @@ class Subject
         $this->resolved  = false;
         $this->createdAt = new \DateTime;
         $this->updatedAt = new \DateTime;
+	    $this->vote = 0;
+	    $this->replies = new ArrayCollection();
     }
 
     /**
@@ -68,6 +85,14 @@ class Subject
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return Reply[]
+     */
+    public function getReplies()
+    {
+        return $this->replies;
     }
 
     /**
@@ -94,13 +119,29 @@ class Subject
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
+	/**
+	 * @param string $title
+	 */
+	public function setTitle($title)
+	{
+		$this->title = $title;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getVote()
+	{
+		return $this->vote;
+	}
+
+	/**
+	 * @param string $vote
+	 */
+	public function setVote($vote)
+	{
+		$this->vote = $vote;
+	}
 
     /**
      * @return string

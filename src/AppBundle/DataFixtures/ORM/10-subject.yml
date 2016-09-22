@@ -3,3 +3,11 @@
         title: '<sentence()>'
         description: '<sentences(3, true)>'
         resolved: '50%? true : false'
+
+'AppBundle\Entity\Reply':
+    reply_{1..500}:
+        subject: '@subject_*'
+        author: '<name()>'
+        mail: '<sentence()>'
+        title: '<sentence()>'
+        text: '<sentences(3, true)>'

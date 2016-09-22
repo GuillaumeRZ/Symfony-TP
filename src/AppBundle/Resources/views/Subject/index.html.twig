@@ -12,6 +12,8 @@
                     {{ subject.updatedAt|localizeddate }}
                 </small>
             </span>
+            <a href="{{ path('subject_id', {id:subject.id}) }}">Découvrir plus</a>
+            <p>Nbre de vote: {{ subject.vote }}</p>
         </article>
     {% endfor %}
 {% endblock %}
