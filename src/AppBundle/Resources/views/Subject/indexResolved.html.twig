@@ -3,34 +3,21 @@
 {% block title 'Sujets' %}
 
 {% block body %}
-    <article class="card card-block">
-        <h3 class="card-title">{{ subject.title }}</h3>
-        <section class="card-text">{{ subject.description }}</section>
-        <span class="card-text">
+    {% for subject in subjects %}
+        <article class="card card-block {% if subject.vote < 0 %}wrongSubject{% endif %}">
+            <h3 class="card-title">{{ subject.title }}</h3>
+            <section class="card-text">{{ subject.description }}</section>
+            <span class="card-text">
                 <small class="text-muted">
                     {{ subject.updatedAt|localizeddate }}
                 </small>
             </span>
-        <a href="{{ path('subject_upvote', {id:subject.id}) }}">UpVote</a>
-        <a href="{{ path('subject_downvote', {id:subject.id}) }}">DownVote</a>
+            <a href="{{ path('subject_id', {id:subject.id}) }}">Découvrir plus</a>
+            <p>Nbre de vote: {{ subject.vote }}</p>
+        </article>
 
-        <form action="{{ path('subject_id', {id:subject.id}) }}" method="POST" novalidate="novalidate">
-            {{ form_widget(form) }}
-            <button type="submit">Envoyer</button>
-        </form>
-
-    </article>
-
-    {% for reply in subject.replies %}
-        <h4>{{ reply.title }}</h4>
-        <p>{{ reply.text }}</p>
-        <p>{{ reply.author }}</p>
-        <p>{{ reply.mail }}</p>
-        <a href="{{ path('reply_upvote', {id:reply.id}) }}">UpVote</a>
-        <a href="{{ path('reply_downvote', {id:reply.id}) }}">DownVote</a>
-        <p>Nbre de vote: {{ reply.vote }}</p>
+        <style>
+            .wrongSubject{background-color:darkgray;}
+        </style>
     {% endfor %}
-
-    {% dump subject %}
-
 {% endblock %}

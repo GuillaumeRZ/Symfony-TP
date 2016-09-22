@@ -1,8 +1,12 @@
 'AppBundle\Entity\Subject':
-    subject_{1..50}:
+    subject_{1..25}:
         title: '<sentence()>'
         description: '<sentences(3, true)>'
-        resolved: '50%? true : false'
+        resolved: true
+    subject_{26..50}:
+        title: '<sentence()>'
+        description: '<sentences(3, true)>'
+        resolved: false
 
 'AppBundle\Entity\Reply':
     reply_{1..500}:

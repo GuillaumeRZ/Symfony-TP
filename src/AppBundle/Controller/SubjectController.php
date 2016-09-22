@@ -27,6 +27,17 @@ class SubjectController extends Controller
         ];
     }
 
+    /**
+     * @Route(path="/resolved", methods={"GET"}, name="subject_index_resolved")
+     * @Template()
+     */
+    public function indexResolvedAction()
+    {
+	    return [
+            'subjects' => $this->getDoctrine()->getRepository(Subject::class)->findResolved()
+        ];
+    }
+
 	/**
 	 * @Route(path="/{id}", methods={"GET","POST"}, name="subject_id")
 	 * @Template()
