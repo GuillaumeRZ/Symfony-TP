@@ -22,6 +22,7 @@
         </article>
 
     {% for reply in subject.replies %}
+        <article class="{% if reply.vote < 0 %}wrongReply{% endif %}">
         <h4>{{ reply.title }}</h4>
         <p>{{ reply.text }}</p>
         <p>{{ reply.author }}</p>
@@ -29,8 +30,13 @@
         <a href="{{ path('reply_upvote', {id:reply.id}) }}">UpVote</a>
         <a href="{{ path('reply_downvote', {id:reply.id}) }}">DownVote</a>
         <p>Nbre de vote: {{ reply.vote }}</p>
+        </article>
     {% endfor %}
 
     {% dump subject %}
+
+    <style>
+        .wrongReply{background-color:darkgray;}
+    </style>
 
 {% endblock %}
