@@ -23,14 +23,14 @@ class Reply
 	/**
 	 * @ORM\ManyToOne(targetEntity="Subject", inversedBy="replies")
 	 *
-	 * @var text
+	 * @var string
 	 */
 	private $subject;
 
 	/**
 	 * @ORM\Column(type="text")
 	 *
-	 * @var text
+	 * @var string
 	 */
 	private $text;
 
@@ -38,7 +38,7 @@ class Reply
 	 * @Assert\NotBlank()
 	 * @ORM\Column(type="text")
 	 *
-	 * @var text
+	 * @var string
 	 */
 	private $author;
 
@@ -46,16 +46,44 @@ class Reply
 	 * @Assert\NotBlank()
 	 * @ORM\Column(type="text")
 	 *
-	 * @var text
+	 * @var string
 	 */
 	private $mail;
 
 	/**
 	 * @ORM\Column(type="text")
 	 *
-	 * @var text
+	 * @var string
 	 */
 	private $title;
+
+	/**
+	 * @ORM\Column(type="string")
+	 *
+	 * @var string
+	 */
+	private $vote;
+
+	public function __construct()
+	{
+		$this->vote = 0;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getVote()
+	{
+		return $this->vote;
+	}
+
+	/**
+	 * @param string $vote
+	 */
+	public function setVote($vote)
+	{
+		$this->vote = $vote;
+	}
 
 	/**
 	 * @return int

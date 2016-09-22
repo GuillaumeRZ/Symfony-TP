@@ -30,6 +30,7 @@ class Subject
 
 	/**
 	 * @ORM\OneToMany(targetEntity="Reply", mappedBy="subject")
+	 * @ORM\OrderBy({"vote" = "DESC"})
 	 *
 	 * @var reply
 	 */
