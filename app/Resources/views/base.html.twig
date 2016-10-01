@@ -6,10 +6,18 @@
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
     </head>
     <body>
         <section class="container">
             <h1>WSF - TP Symfony P2019</h1>
+            
+            <ul class="menu">
+                <a href="{{ path('subject_index')}}"><li>Accueil</li></a>
+                <a href="{{ path('subject_create')}}"><li>Créer un sujet</li></a>
+                <a href="{{ path('subject_index_resolved')}}"><li>Sujets résolus</li></a>
+            </ul>
+
             <main>
                 <h2>{{ block('title') }}</h2>
                 <section>

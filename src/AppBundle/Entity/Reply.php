@@ -66,6 +66,8 @@ class Reply
 
 	public function __construct()
 	{
+		$this->title = "Titre de la nouvelle réponse";
+		$this->description = "Description";
 		$this->vote = 0;
 	}
 
@@ -94,11 +96,19 @@ class Reply
 	}
 
 	/**
-	 * @return text
+	 * @return string
 	 */
 	public function getSubject()
 	{
 		return $this->subject;
+	}
+
+	/**
+	 * @param string $subject
+	 */
+	public function setSubject(Subject $subject)
+	{
+		$this->subject = $subject;
 	}
 
 	/**
@@ -163,13 +173,5 @@ class Reply
 	public function setMail($mail)
 	{
 		$this->mail = $mail;
-	}
-
-	/**
-	 * @param text $subject
-	 */
-	public function setSubject(Subject $subject)
-	{
-		$this->subject = $subject;
 	}
 }

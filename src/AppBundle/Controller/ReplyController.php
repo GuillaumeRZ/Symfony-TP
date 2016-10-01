@@ -49,4 +49,18 @@ class ReplyController extends Controller  {
 		return $this->redirectToRoute('subject_id', ['id' => $reply->getSubject()->getId()]);
 	}
 
+	/**
+	 * @Route(path="/{id}/delete", methods={"GET"}, name="reply_delete")
+	 * @Template()
+	 */
+	public function replyDeleteAction($id)
+	{
+		$reply = $this->getDoctrine()->getRepository(Reply::class)->find($id);
+		$deleteReply = $this->getDoctrine()->getManager();
+		$deleteReply->remove($reply);
+		$deleteReply->flush();
+		$subjectId = $reply->getSubject()->getId();
+		return $this->redirectToRoute('subject_id', [ 'id' => $subjectId]);
+	}
+
 }

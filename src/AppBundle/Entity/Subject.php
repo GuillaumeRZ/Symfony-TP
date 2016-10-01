@@ -29,7 +29,7 @@ class Subject
 	private $vote;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Reply", mappedBy="subject")
+	 * @ORM\OneToMany(targetEntity="Reply", mappedBy="subject", cascade={"remove"})
 	 * @ORM\OrderBy({"vote" = "DESC"})
 	 *
 	 * @var reply
@@ -175,8 +175,6 @@ class Subject
     {
         $this->resolved = $resolved;
     }
-
-
 
     /**
      * @ORM\PreUpdate()

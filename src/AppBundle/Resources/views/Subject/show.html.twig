@@ -3,40 +3,11 @@
 {% block title 'Sujets' %}
 
 {% block body %}
-        <article class="card card-block">
-            <h3 class="card-title">{{ subject.title }}</h3>
-            <section class="card-text">{{ subject.description }}</section>
-            <span class="card-text">
-                <small class="text-muted">
-                    {{ subject.updatedAt|localizeddate }}
-                </small>
-            </span>
-            <a href="{{ path('subject_upvote', {id:subject.id}) }}">UpVote</a>
-            <a href="{{ path('subject_downvote', {id:subject.id}) }}">DownVote</a>
-
-            <form action="{{ path('subject_id', {id:subject.id}) }}" method="POST" novalidate="novalidate">
-            {{ form_widget(form) }}
-                <button type="submit">Envoyer</button>
-            </form>
-
-        </article>
-
+    {{ include('@App/Subject/create_reply_subject.html.twig', { 'subject': subject }) }}
     {% for reply in subject.replies %}
-        <article class="{% if reply.vote < 0 %}wrongReply{% endif %}">
-        <h4>{{ reply.title }}</h4>
-        <p>{{ reply.text }}</p>
-        <p>{{ reply.author }}</p>
-        <p>{{ reply.mail }}</p>
-        <a href="{{ path('reply_upvote', {id:reply.id}) }}">UpVote</a>
-        <a href="{{ path('reply_downvote', {id:reply.id}) }}">DownVote</a>
-        <p>Nbre de vote: {{ reply.vote }}</p>
-        </article>
+        {{ include('@App/Subject/single_subject_reply.html.twig', { 'subject': subject }) }}
     {% endfor %}
 
     {% dump subject %}
-
-    <style>
-        .wrongReply{background-color:darkgray;}
-    </style>
 
 {% endblock %}

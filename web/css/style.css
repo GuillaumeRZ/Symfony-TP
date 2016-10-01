@@ -1,0 +1,21 @@
+.wrong_subject {
+    background-color: darkgray;
+}
+
+.wrong_reply {
+    background-color: darkgray;
+}
+
+.delete{
+    background-color: #01aa91;
+    border-color: #01aa91;
+    border-bottom-color: #017766;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.delete:hover{
+    background-color: #01b89d;
+}

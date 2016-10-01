@@ -1,0 +1,13 @@
+<article class="{% if reply.vote < 0 %}wrong_reply{% endif %}">
+    <h4>{{ reply.title }}</h4>
+    <p>{{ reply.text }}</p>
+    <p>{{ reply.author }}</p>
+    <p>{{ reply.mail }}</p>
+    <a href="{{ path('reply_upvote', {id:reply.id}) }}">UpVote</a>
+    <a href="{{ path('reply_downvote', {id:reply.id}) }}">DownVote</a>
+    <p>Nombre de votes: {{ reply.vote }}</p>
+
+    <a href="{{ path('reply_delete', {id:reply.id}) }}">
+        <button class="delete">Delete</button>
+    </a>
+</article>
